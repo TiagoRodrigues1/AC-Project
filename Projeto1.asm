@@ -1,7 +1,7 @@
-#Projeto Realizado por: Miguel Costa 38573 e JosÈ Rodrigues 38099
+#Projeto Realizado por: Miguel Costa 38573 e Jos√© Rodrigues 38099
 .data
 menuTitulo: .asciiz "\n\tJogo 4-in-row!\n"
-menuMsg: .asciiz "\n[j]-jogar\n[e]-PontuaÁıes\n[f]-Finalizar Programa\n"
+menuMsg: .asciiz "\n[j]-jogar\n[e]-Pontua√ß√µes\n[f]-Finalizar Programa\n"
 menuMsgErro: .asciiz "\nIntroduza um caracter valido!\n"
 Vitorias: .asciiz "\tWins: "
 Empates: .asciiz "\n\t\t\t\tDraws: "
@@ -14,7 +14,7 @@ Player1Zero: .asciiz "Jogador 1 tem 0 Pontos\n"
 Player2Zero: .asciiz "Jogador 2 tem 0 Pontos\n"
 Player1: .asciiz "Jogador 1 a jogar:\n"
 Player2: .asciiz "Jogador 2 a jogar:\n"
-OpcaoCol: .asciiz "Escolha uma coluna para colucar a peÁa(1-7):\n"
+OpcaoCol: .asciiz "Escolha uma coluna para colucar a pe√ßa(1-7):\n"
 Confirmacao: .asciiz "Existe algum 4 em linha?\n (Sim(1) ou Nao(0)\n"
 EndGameMsg: .asciiz "Partidade terminada\n"
 Player1Winner: .asciiz "\tJogador 1 venceu!\n"
@@ -36,7 +36,7 @@ linhas:	.word	6				#Numero de linhas
 colunas: .word 7				#Numero de colunas
 counter: .word 0				#Counter para numero de jogadas
 endline: .asciiz	"\n"			#Paragrafo entre as linhas
-tab:	.asciiz	"\t"				#EspaÁo entre os numeros
+tab:	.asciiz	"\t"				#Espa√ßo entre os numeros
 separador: .asciiz "-----------------------------------------"
 Fim: .asciiz "\nPrograma terminado\n"
 	.text
@@ -73,7 +73,7 @@ jogo:
 	
 	
 #-----------------------------------------------------------------------------------------------------------------------------------#		
-mat_print:						#Esta funÁ„o faz print das linhas ao contrario
+mat_print:						#Esta fun√ß√£o faz print das linhas ao contrario
 	la	$a0, mat	 			#Load do adress da matriz
 	lw 	$a1, linhas				#Load do numero de linhas
 	lw 	$a2, colunas				#Load do numero de colunas	
@@ -126,20 +126,20 @@ PlayJogador1:
 	syscall
 	li $v0,5 					#Recolhe a coluna do jogador 1.
 	syscall
-	addi $v0,$v0,-1 				#Subtrai -1 ‡ coluna obtida pq no array2d comeÁa em posiÁıes 0.
+	addi $v0,$v0,-1 				#Subtrai -1 √† coluna obtida pq no array2d come√ßa em posi√ß√µes 0.
         mul $t0,$v0,4					#Multiplica por 4 por causa do tamanho do inteiro que ocupa 4 bytes
         move $a0,$v0 					#a0 fica com o valor introduzido pelo jogador.
-	jal ValidacaoP1 				#salta para a funÁ„o de validaÁ„o do numero.
-	beq $v0,0, ColunaInvalidaPlayer1 		#Se o valor retornado da funÁ„o "Validacao" for 0, ele ira imprimir mag de erro e volta a pedir outra coluna.
-	li $t5,1 					#t5 ser· a peÁa , onde o jogador 1 ter· a peÁa (1)
-	jal VerificaoColuna 				#Salta para a funÁ„o para verificar se a celula È valida ou nao
+	jal ValidacaoP1 				#salta para a fun√ß√£o de valida√ß√£o do numero.
+	beq $v0,0, ColunaInvalidaPlayer1 		#Se o valor retornado da fun√ß√£o "Validacao" for 0, ele ira imprimir mag de erro e volta a pedir outra coluna.
+	li $t5,1 					#t5 ser√° a pe√ßa , onde o jogador 1 ter√° a pe√ßa (1)
+	jal VerificaoColuna 				#Salta para a fun√ß√£o para verificar se a celula √© valida ou nao
 	sw $t5,mat($v0) 				#Coloca o numero na matriz.
         jal Layout					#Apenas imprime os numeros da coluna
         jal mat_print   				#Imprime matriz modificada
         jal CounterJogadas				#Salta para a funcao de contar jogada (count ++)
-	blt $a0, 7, PlayJogador2			#Caso o numero de jogadas seja inferior a 7 (count=7), o programa nem vai perguntar se existe algum vencedor , pois ainda n existe peÁas sufecientes para tal 
-        jal AskWinner					#Caso o numero de jogadas seja superior a 7, a funÁ„o ir· perguntar se ja existe um vencedor, esta funÁ„o retorna (1) ou (0)
-      	beq $v0,1,Player1Win				#Se o V0 retornado da funÁ„o "AskWinner" for 1(ou seja o jogador1 ganhou), salta para a funÁ„o "Player1Win"
+	blt $a0, 7, PlayJogador2			#Caso o numero de jogadas seja inferior a 7 (count=7), o programa nem vai perguntar se existe algum vencedor , pois ainda n existe pe√ßas sufecientes para tal 
+        jal AskWinner					#Caso o numero de jogadas seja superior a 7, a fun√ß√£o ir√° perguntar se ja existe um vencedor, esta fun√ß√£o retorna (1) ou (0)
+      	beq $v0,1,Player1Win				#Se o V0 retornado da fun√ß√£o "AskWinner" for 1(ou seja o jogador1 ganhou), salta para a fun√ß√£o "Player1Win"
 	j PlayJogador2					#Caso ainda nao exista um vencedor, salta para o proximo jogador.
        
         
@@ -152,23 +152,23 @@ PlayJogador2:
 	syscall
 	li $v0,5 					#Recolhe a coluna do jogador 2.
 	syscall
-	addi $v0,$v0,-1 				#Subtrai -1 ‡ coluna obtida pq no array2d comeÁa em posiÁıes 0
+	addi $v0,$v0,-1 				#Subtrai -1 √† coluna obtida pq no array2d come√ßa em posi√ß√µes 0
         mul $t0,$v0,4					#Multiplica por 4 por causa da memoria
         move $a0,$v0 					#a0 fica com o valor introduzido pelo jogador
-	jal ValidacaoP2					#salta para a funÁ„o de validaÁ„o da Coluna
-	beq $v0,0, ColunaInvalidaPlayer2 		#Se o valor retornado da funÁ„o "Validacao" for 0, ele ira imprimir mag de erro e volta a pedir outra coluna.
-	li $t5,2 					#t5 ser· a peÁa , onde o jogador 1 ter· a peÁa (1)
-	jal VerificaoColuna 				#Salta para a funÁ„o para verificar se a celula È valida ou nao
+	jal ValidacaoP2					#salta para a fun√ß√£o de valida√ß√£o da Coluna
+	beq $v0,0, ColunaInvalidaPlayer2 		#Se o valor retornado da fun√ß√£o "Validacao" for 0, ele ira imprimir mag de erro e volta a pedir outra coluna.
+	li $t5,2 					#t5 ser√° a pe√ßa , onde o jogador 1 ter√° a pe√ßa (1)
+	jal VerificaoColuna 				#Salta para a fun√ß√£o para verificar se a celula √© valida ou nao
 	sw $t5,mat($v0) 				#Coloca o numero na matriz.
 	jal Layout					##Apenas imprime os numeros da coluna
 	jal mat_print					#Imprime matriz modificada
 	jal CounterJogadas				#Salta para a funcao de contar jogada (count ++)
-	blt $a0, 7, PlayJogador1			#Caso o numero de jogadas seja inferior a 7 (count=7), o programa nem vai perguntar se existe algum vencedor , pois ainda n existe peÁas sufecientes para tal 
+	blt $a0, 7, PlayJogador1			#Caso o numero de jogadas seja inferior a 7 (count=7), o programa nem vai perguntar se existe algum vencedor , pois ainda n existe pe√ßas sufecientes para tal 
        	beq $a0, 42, AskWinnerDraw			
         beq $v0, 0, draw
         beq $v0,1,Player2Win
-       	jal AskWinner					#Caso o numero de jogadas seja superior a 7, a funÁ„o ir· perguntar se ja existe um vencedor, esta funÁ„o retorna (1) ou (0)
-       	beq $v0,1,Player2Win				#Se o V0 retornado da funÁ„o "AskWinner" for 1(ou seja o jogador 2 ganhou), salta para a funÁ„o "Player2Win"
+       	jal AskWinner					#Caso o numero de jogadas seja superior a 7, a fun√ß√£o ir√° perguntar se ja existe um vencedor, esta fun√ß√£o retorna (1) ou (0)
+       	beq $v0,1,Player2Win				#Se o V0 retornado da fun√ß√£o "AskWinner" for 1(ou seja o jogador 2 ganhou), salta para a fun√ß√£o "Player2Win"
 	j PlayJogador1					#Caso ainda nao exista um vencedor, salta para o proximo jogador.
 	
 	
@@ -176,11 +176,11 @@ PlayJogador2:
 ValidacaoP1:
 	bgt $a0,6, Invalido 				#Se o numero introduzido for maior que 6, salta para funcao "Invalido"
         blt $a0,0, Invalido 				#Ou se o numero for menor que 0 , tambam salta para a funcao "Invalido"
-        addi $t7,$a0,35					#Numero de PosiÁıes totais do array
+        addi $t7,$a0,35					#Numero de Posi√ß√µes totais do array
         mul $t7,$t7,4 					#Multiplica cada numero por 4 bytes
-        lw $t6,mat($t7) 				##Carrega o valor que est· na celula da matriz
-      	bne $t6 ,0 , ColunaCheiaP1 			#Se o valor que est· na celula ultima celula da coluna for diferente de 0, salta para a funcao ColunaCheia
-        li $v0,1 					#Se o valor for 0, a funÁ„o retorna 1
+        lw $t6,mat($t7) 				##Carrega o valor que est√° na celula da matriz
+      	bne $t6 ,0 , ColunaCheiaP1 			#Se o valor que est√° na celula ultima celula da coluna for diferente de 0, salta para a funcao ColunaCheia
+        li $v0,1 					#Se o valor for 0, a fun√ß√£o retorna 1
         jr $ra 						#return 1;
         
 ValidacaoP2:
@@ -188,13 +188,13 @@ ValidacaoP2:
         blt $a0,0,Invalido 				#Ou se o numero for menor que 0 , tambam salta para a funcao "Invalido"
         addi $t7,$a0,35					#t7 fica com o valor do ultima indice da matriz, mat[5][ColunaIntroduzida].
         mul $t7,$t7,4 					#Multiplica numero por 4 bytes
-        lw $t6,mat($t7) 				#Carrega o valor que est· na celula da matriz.
-    	bne $t6 ,0 , ColunaCheiaP2  			#Se o valor que est· na celula ultima celula da coluna for diferente de 0, salta para a funcao ColunaCheia
-        li $v0,1 					#Se o valor for 0, a funÁ„o retorna 1
+        lw $t6,mat($t7) 				#Carrega o valor que est√° na celula da matriz.
+    	bne $t6 ,0 , ColunaCheiaP2  			#Se o valor que est√° na celula ultima celula da coluna for diferente de 0, salta para a funcao ColunaCheia
+        li $v0,1 					#Se o valor for 0, a fun√ß√£o retorna 1
         jr $ra 						#return 1;
 
 Invalido:
-        li $v0,0 					#Se a celula estiver preenchida (ou seja diferente de 0) a funÁ„o retorna 0
+        li $v0,0 					#Se a celula estiver preenchida (ou seja diferente de 0) a fun√ß√£o retorna 0
         jr $ra 						#return 0;
                 
 ColunaInvalidaPlayer1:
@@ -212,7 +212,7 @@ ColunaInvalidaPlayer2:
 	
 ColunaCheiaP1:
 	li $v0, 4
-	la $a0, mensagemErroColuna 			#Imprime que a coluna est· cheia e salta para o jogador 1
+	la $a0, mensagemErroColuna 			#Imprime que a coluna est√° cheia e salta para o jogador 1
 	syscall
 	
 
@@ -220,7 +220,7 @@ ColunaCheiaP1:
 	
 ColunaCheiaP2:
 	li $v0, 4
-	la $a0, mensagemErroColuna 			#Imprime que a coluna est· cheia e salta para o jogador 2
+	la $a0, mensagemErroColuna 			#Imprime que a coluna est√° cheia e salta para o jogador 2
 	syscall
 	j PlayJogador2
 		
@@ -230,9 +230,9 @@ VerificaoColuna:
         add $t4,$t4,$t0					#Coloca t4 com o valor de t0, Indexi
                
         loop1:
-         	lw $t2,mat($t4)				#t2 fica com o valor que existe na posiÁao da matriz			
-                beq $t2,0,end1				#Se o valor na posic„o for 0 for 0, salta para o fim		
-         	addi $t4,$t4,28	                	#Vai para a posiÁ„o acima da coluna			
+         	lw $t2,mat($t4)				#t2 fica com o valor que existe na posi√ßao da matriz			
+                beq $t2,0,end1				#Se o valor na posic√£o for 0 for 0, salta para o fim		
+         	addi $t4,$t4,28	                	#Vai para a posi√ß√£o acima da coluna			
          	j loop1					#Volta para o loop
         end1:
         	addi $v0,$t4,0				
@@ -240,14 +240,14 @@ VerificaoColuna:
                 
 
 AskWinner:				
-		li $v0, 4				#Imprime pergunta se existe 4 em linha ou n„o
+		li $v0, 4				#Imprime pergunta se existe 4 em linha ou n√£o
 		la $a0, Confirmacao
 		syscall 
-		li $v0, 5 				#LÍ o valor introduzido
+		li $v0, 5 				#L√™ o valor introduzido
 		syscall
 		bgt $v0,1, ErroAskWinner
 		blt $v0, 0, ErroAskWinner
-		jr $ra 					#D· return ao valor intruzido (1 ou 0).
+		jr $ra 					#D√° return ao valor intruzido (1 ou 0).
 		
 		
 ErroAskWinner:					
@@ -265,24 +265,24 @@ CounterJogadas:
 		
 
 AskWinnerDraw:	
-		li $v0, 4				#Imprime pergunta se existe 4 em linha ou n„o
+		li $v0, 4				#Imprime pergunta se existe 4 em linha ou n√£o
 		la $a0, Confirmacao
 		syscall 
-		li $v0, 5 				#LÍ o valor introduzido
+		li $v0, 5 				#L√™ o valor introduzido
 		syscall
-							#D· return ao valor intruzido (1 ou 0).
+							#D√° return ao valor intruzido (1 ou 0).
 		jr $ra
 
 
 Layout:
 	li $v0, 4
-	la $a0, ilusColunas     			#Apenas imprima o numero das colunas para facilitar a colocaÁ„o das peÁas
+	la $a0, ilusColunas     			#Apenas imprima o numero das colunas para facilitar a coloca√ß√£o das pe√ßas
 	syscall	
 	jr $ra
 	
 Player1Win:
 		li $v0, 4						
-		la $a0, Player1Winner			#D· print ‡ string			
+		la $a0, Player1Winner			#D√° print √† string			
 		syscall
 		lw $t0,VitP1				#Da load ao numero de vitorias do jogador 2
 		addi $t0,$t0,1				#Adiciona +1 ao numero de vitorias
@@ -291,14 +291,14 @@ Player1Win:
 		addi $t1,$t1,3				#Adiciona +3  ao numero de pontos
 		sw $t1,p1score				#Guarda o numero de pontos
 		lw $t0,p2score				#Da load ao numero de pontos do jogador 1
-		beq $t0,0 zerop2points 			#Se o numero de pontos do jogador 1 j· for 0, salta para a funÁ„o zerop1points 
+		beq $t0,0 zerop2points 			#Se o numero de pontos do jogador 1 j√° for 0, salta para a fun√ß√£o zerop1points 
 		addi $t0,$t0,-1				#Caso nao seja 0, subtrai 1
 		sw $t0, p2score				#Guarda o numero de pontos do jogador 2
 		j pontosend				#Salta para o fim
 
 Player2Win:
 		li $v0, 4						
-		la $a0, Player2Winner			#D· print ‡ string			
+		la $a0, Player2Winner			#D√° print √† string			
 		syscall
 		lw $t0,VitP2				#Da load ao numero de vitorias do jogador 2
 		addi $t0,$t0,1				#Adiciona +1 ao numero de vitorias
@@ -307,14 +307,14 @@ Player2Win:
 		addi $t0,$t0,3				#Adiciona +3  ao numero de pontos
 		sw $t0,p2score				#Guarda o numero de pontos
 		lw $t0,p1score				#Da load ao numero de pontos do jogador 1
-		beq $t0,0 zerop1points 			#Se o numero de pontos do jogador 1 j· for 0, salta para a funÁ„o zerop1points 
+		beq $t0,0 zerop1points 			#Se o numero de pontos do jogador 1 j√° for 0, salta para a fun√ß√£o zerop1points 
 		addi $t0,$t0,-1				#Caso nao seja 0, subtrai 1
 		sw $t0, p1score				#Guarda o numero de pontos do jogador 2
 		j pontosend				#Salta para o fim
 	
 draw: 
 	li $v0,4
-	la $a0,Empate					#Da print ‡ string
+	la $a0,Empate					#Da print √† string
 	syscall
 	lw $t0,Draws					#Carrega numero de empates
 	add $t0,$t0,1					#Adiciona mais 1
@@ -329,19 +329,19 @@ draw:
 	jal printPoints					#Imprime pontos
 	j main						#Volta ao inicio
 zerop2points:				
-	li $t0, 0					#Se a pontuaÁ„o do jogador 2 ja for 0, entao fica 0, nao podendo ser negativa
+	li $t0, 0					#Se a pontua√ß√£o do jogador 2 ja for 0, entao fica 0, nao podendo ser negativa
 	sw $t0, p2score					
 	syscall
 	j pontosend					#Salta para o fim
-zerop1points:						#Se a pontuaÁ„o do jogador 1 ja for 0, entao fica 0, nao podendo ser negativa
+zerop1points:						#Se a pontua√ß√£o do jogador 1 ja for 0, entao fica 0, nao podendo ser negativa
 	li $t0, 0
 	sw $t0, p1score
 	syscall
 	j pontosend					#Salta para o fim
 	
 pontosend:
-	jal printPoints					#Chama a funÁ„o de imprimir todas as stats.
-	jal CleanMatriz					#Chama funÁ„o de limpar matriz.
+	jal printPoints					#Chama a fun√ß√£o de imprimir todas as stats.
+	jal CleanMatriz					#Chama fun√ß√£o de limpar matriz.
 	li $v0, 4
 	la $a0, separador				#Imprime separador
 	syscall
@@ -349,7 +349,7 @@ pontosend:
 
 CleanMatriz: 
 	li $v0,4 
-	la $a0,TabuleiroLimpo 				#Da print · string 
+	la $a0,TabuleiroLimpo 				#Da print √° string 
 	syscall
 	add $t0,$0,$0 					#t0 = 0
 	loop: 
@@ -357,7 +357,7 @@ CleanMatriz:
 		lw $t1,mat($t0) 			#Carregar end matriz para t1 na pos t0
 		add $t1,$0,$0   			#t1 = 0
 		sw $t1,mat($t0)				#Guardar 0 na pos t0 da matriz
-		addi $t0,$t0,4 				#t0 tem de andar de 4 em 4 pq cd int È 4 bytes
+		addi $t0,$t0,4 				#t0 tem de andar de 4 em 4 pq cd int √© 4 bytes
 		j loop
 	end:
 	lw $t3,counter					#Carrega o valor do count atual
@@ -366,17 +366,17 @@ CleanMatriz:
 	jr $ra
 printPoints:
 	li $v0,4
-	la $a0,Player1Pontos				#Da print ‡ string
+	la $a0,Player1Pontos				#Da print √† string
 	syscall
 	li $v0,4
-	la $a0,Pontos					#Da print ‡ string
+	la $a0,Pontos					#Da print √† string
 	syscall
 	lw $t0,p1score					#Da print  ao numero de pontos do jogador 1
 	li $v0,1
 	move $a0,$t0
 	syscall
 	li $v0,4
-	la $a0,Vitorias					#Da print ‡ string
+	la $a0,Vitorias					#Da print √† string
 	syscall
 	lw $t0,VitP1					#Da print ao numero de vitorias do jogador 1
 	li $v0,1
@@ -386,24 +386,24 @@ printPoints:
 	la $a0,endline					#Da print a um \n
 	syscall
 	li $v0,4
-	la $a0,Player2Pontos				#Da print ‡ string
+	la $a0,Player2Pontos				#Da print √† string
 	syscall
 	li $v0,4
-	la $a0,Pontos					#Da print ‡ string
+	la $a0,Pontos					#Da print √† string
 	syscall
 	lw $t0,p2score					#Da print  ao numero de pontos do jogador 2
 	li $v0,1
 	move $a0,$t0
 	syscall
 	li $v0,4
-	la $a0,Vitorias					#Da print ‡ string
+	la $a0,Vitorias					#Da print √† string
 	syscall
 	lw $t0,VitP2					#Da print ao numero de vitorias do jogador 2
 	li $v0,1
 	move $a0,$t0
 	syscall
 	li $v0,4
-	la $a0, Empates					#Da print ‡ string
+	la $a0, Empates					#Da print √† string
 	syscall
 	lw $t0, Draws					#Carrega numero de empates
 	li $v0,1
